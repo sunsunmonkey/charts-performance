@@ -8,9 +8,6 @@ const pathSrc = path.resolve(__dirname, 'src');
 const pathTypes = path.resolve(__dirname, 'types');
 // https://vitejs.dev/config/
 export default defineConfig({
-  build: {
-    outDir: 'build',
-  },
   resolve: {
     alias: {
       '~/': `${pathTypes}/`,

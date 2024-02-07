@@ -2,6 +2,13 @@
 
 ## 图表性能测速
 
+项目启动
+
+```shell
+pnpm i
+pnpm dev
+```
+
 ## 添加图表方式
 
 src\common\const.ts 下更新引擎类型，图表类型
