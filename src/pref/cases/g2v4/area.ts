@@ -1,5 +1,4 @@
-//@ts-ignore
-import 'https://cdnjs.cloudflare.com/ajax/libs/antv-g2/4.1.9/g2.min.js';
+import { Chart } from 'G2v4';
 
 import { Data } from '@/pref/types';
 import { size, sleep, X_FIELD, Y_FIELD } from '@/pref/utils';
@@ -9,18 +8,13 @@ import { size, sleep, X_FIELD, Y_FIELD } from '@/pref/utils';
  * @param data
  */
 
-//@ts-ignore
-// eslint-disable-next-line no-undef
-const G2v4 = G2;
 export default async function Area(
   container: HTMLElement,
   data: Data
 ): Promise<number> {
   const startTime = performance.now();
 
-  //@ts-ignore
-  // eslint-disable-next-line no-undef
-  const chart = new G2v4.Chart({
+  const chart = new Chart({
     container,
     ...size,
   });

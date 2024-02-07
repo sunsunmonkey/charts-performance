@@ -8,7 +8,8 @@
     "start": "vite start",
     "lint": "eslint --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "prettier": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "preview": "vite preview"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -24,7 +25,11 @@
     "@antv/g2plot": "^2.4.31",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "G2v4": "npm:@antv/g2@4.2.8",
+    "G2v5": "npm:@antv/g2@5.1.0",
     "antd": "^5.14.0",
+    "echarts": "^5.4.3",
+    "highcharts": "^11.3.0",
     "react": "^18",
     "react-dom": "^18",
     "react-g2plot": "^0.3.2",

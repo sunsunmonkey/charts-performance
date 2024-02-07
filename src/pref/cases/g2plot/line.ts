@@ -1,4 +1,4 @@
-import 'https://cdnjs.cloudflare.com/ajax/libs/g2plot/2.4.31/g2plot.min.js';
+import { Line as LineG2plot } from '@antv/g2plot';
 
 import { Data } from '@/pref/types';
 import { size, sleep, X_FIELD, Y_FIELD } from '@/pref/utils';
@@ -11,12 +11,9 @@ export default async function Line(
   container: HTMLElement,
   data: Data
 ): Promise<number> {
-  //@ts-ignore
-  // eslint-disable-next-line no-undef
-  const { Line } = G2Plot;
   const startTime = performance.now();
 
-  const line = new Line(container, {
+  const line = new LineG2plot(container, {
     data,
     xField: X_FIELD,
     yField: Y_FIELD,

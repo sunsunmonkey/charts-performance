@@ -1,4 +1,4 @@
-import 'https://cdnjs.cloudflare.com/ajax/libs/g2plot/2.4.31/g2plot.min.js';
+import { Scatter as ScatterG2plot } from '@antv/g2plot';
 
 import { Data } from '@/pref/types';
 import { size, sleep, Y_FIELD, Z_FIELD } from '@/pref/utils';
@@ -11,12 +11,9 @@ export default async function Scatter(
   container: HTMLElement,
   data: Data
 ): Promise<number> {
-  //@ts-ignore
-  // eslint-disable-next-line no-undef
-  const { Scatter } = G2Plot;
   const startTime = performance.now();
 
-  const scatter = new Scatter(container, {
+  const scatter = new ScatterG2plot(container, {
     data,
     xField: Z_FIELD,
     yField: Y_FIELD,

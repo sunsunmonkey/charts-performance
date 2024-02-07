@@ -1,4 +1,4 @@
-import 'https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js';
+import * as echarts from 'echarts';
 
 import { Data } from '@/pref/types';
 import { size, sleep, Y_FIELD, Z_FIELD } from '@/pref/utils';
@@ -12,8 +12,6 @@ export default async function Scatter(
   data: Data
 ): Promise<number> {
   const startTime = performance.now();
-  //@ts-ignore
-  // eslint-disable-next-line no-undef
   const myChart = echarts.init(container, undefined, size);
   const option = {
     grid: {

@@ -6,7 +6,7 @@ export const Header = () => {
       <div className="flex w-full justify-between px-8">
         performance for antvis
         <a
-          href="#"
+          href="https://github.com/sunsunmonkey/charts-performance"
           className=" item-center flex text-2xl text-white"
           target="_blank"
           rel="noreferrer"

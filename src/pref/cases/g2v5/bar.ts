@@ -1,4 +1,4 @@
-import 'https://cdnjs.cloudflare.com/ajax/libs/antv-g2/5.1.0/g2.min.js';
+import { Chart } from 'G2v5';
 
 import { Data } from '@/pref/types';
 import { size, sleep, X_FIELD, Y_FIELD } from '@/pref/utils';
@@ -6,9 +6,7 @@ import { size, sleep, X_FIELD, Y_FIELD } from '@/pref/utils';
  * @param container
  * @param data
  */
-//@ts-ignore
-// eslint-disable-next-line no-undef
-const G2v5 = G2;
+
 export default async function Bar(
   container: HTMLElement,
   data: Data
@@ -17,7 +15,7 @@ export default async function Bar(
 
   //@ts-ignore
   // eslint-disable-next-line no-undef
-  const chart = new G2v5.Chart({
+  const chart = new Chart({
     container,
     ...size,
   });

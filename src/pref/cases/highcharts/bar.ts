@@ -1,5 +1,4 @@
-/* eslint-disable simple-import-sort/imports */
-import 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/11.3.0/highcharts.js';
+import * as Highcharts from 'highcharts';
 
 import { Data } from '@/pref/types';
 import { size, sleep, X_FIELD, Y_FIELD } from '@/pref/utils';
@@ -34,8 +33,8 @@ export default async function Bar(
     ],
   };
   const startTime = performance.now();
+
   //@ts-ignore
-  // eslint-disable-next-line no-undef
   const myChart = Highcharts.chart(container, option);
 
   const endTime = performance.now();

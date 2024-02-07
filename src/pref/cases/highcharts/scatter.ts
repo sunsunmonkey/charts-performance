@@ -1,5 +1,4 @@
-/* eslint-disable simple-import-sort/imports */
-import 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/11.3.0/highcharts.js';
+import * as Highcharts from 'highcharts';
 
 import { Data } from '@/pref/types';
 import { size, sleep, Y_FIELD, Z_FIELD } from '@/pref/utils';
