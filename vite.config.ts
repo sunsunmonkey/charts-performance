@@ -1,14 +1,13 @@
-import path from 'path';
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
+import path from 'path';
+import tailwindcss from 'tailwindcss';
+import { defineConfig } from 'vite';
 //确定路径重命名
 const pathSrc = path.resolve(__dirname, 'src');
 const pathTypes = path.resolve(__dirname, 'types');
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/charts-performance/',
   build: {
     outDir: 'build',
   },
@@ -18,13 +17,10 @@ export default defineConfig({
       '@/': `${pathSrc}/`,
     },
   },
-  plugins: [
-    react(),
-    
-  ],
+  plugins: [react()],
   css: {
     postcss: {
-      plugins: [autoprefixer({}),tailwindcss],
+      plugins: [autoprefixer({}), tailwindcss],
     },
   },
   server: {

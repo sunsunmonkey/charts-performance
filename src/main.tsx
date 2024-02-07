@@ -1,15 +1,25 @@
-import { createRoot } from 'react-dom/client';
 import './index.css';
-import { HashRouter as Router } from 'react-router-dom';
-import App from './App';
+
+import { ConfigProvider } from 'antd';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+
+import { App } from './index';
 
 const rootElement: HTMLElement = document.getElementById('root')!;
 const root = createRoot(rootElement);
 
 root.render(
-  // <React.StrictMode>
-  <Router>
-    <App />
-  </Router>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#6d28d9',
+          colorInfo: '#6d28d9',
+        },
+      }}
+    >
+      <App />
+    </ConfigProvider>
+  </React.StrictMode>
 );

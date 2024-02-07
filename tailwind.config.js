@@ -7,5 +7,7 @@ module.exports = {
       colors: {},
     },
   },
-  plugins: [],
-}
+  corePlugins: {
+    preflight: false,
+  },
+};

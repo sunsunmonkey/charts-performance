@@ -12,9 +12,9 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "module": "NodeNext",
+    "module": "esnext",
     "moduleDetection": "force",
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -23,11 +23,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "~/*": ["types/*"]
+      "~/*": ["types/*"],
+      "https://code.highcharts.com/es-modules/masters/*.src.js": [
+        "node_modules/highcharts/*.src"
+      ]
     }
   },
   "include": ["src", "types"],
-  "exclude": [
-    "node_modules",
-  ]
+  "exclude": ["node_modules"]
 }
