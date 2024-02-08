@@ -1,16 +1,13 @@
 import * as Highcharts from 'highcharts';
 
 import { Data } from '@/pref/types';
-import { size, sleep, X_FIELD, Y_FIELD } from '@/pref/utils';
+import { size, X_FIELD, Y_FIELD } from '@/pref/utils';
 
 /**
  * @param container
  * @param data
  */
-export default async function Area(
-  container: HTMLElement,
-  data: Data
-): Promise<number> {
+export default async function Area(container: HTMLElement, data: Data) {
   const option = {
     title: null,
     navigation: null,
@@ -41,17 +38,9 @@ export default async function Area(
       },
     ],
   };
-  const startTime = performance.now();
 
   //@ts-ignore
   const myChart = Highcharts.chart(container, option);
 
-  const endTime = performance.now();
-
-  await sleep();
-
-  myChart.destroy();
-
-  // 返回最后的时间
-  return endTime - startTime;
+  return myChart;
 }

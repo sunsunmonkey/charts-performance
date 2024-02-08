@@ -3,7 +3,7 @@ import { IConfig, IProgress } from '@/layout/content';
 
 import { getPerfCase } from '../cases';
 import { Data, PerfData, PerfDatum } from '../types';
-import { createDIV, getSeq, mock } from '../utils';
+import { createDIV, getSeq, mock, removeDIV } from '../utils';
 
 async function runPerfCase(
   engine: EnginesType,
@@ -19,7 +19,7 @@ async function runPerfCase(
   // 执行
   const time = await perfCase(div, mockData.slice(0, length)); // TODO 优化一下 slice，具备有一定的随机性
 
-  //   removeDIV(div);
+  removeDIV(div);
 
   return {
     engine,

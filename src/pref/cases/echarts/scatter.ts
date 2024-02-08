@@ -1,17 +1,13 @@
 import * as echarts from 'echarts';
 
 import { Data } from '@/pref/types';
-import { size, sleep, Y_FIELD, Z_FIELD } from '@/pref/utils';
+import { size, Y_FIELD, Z_FIELD } from '@/pref/utils';
 
 /**
  * @param container
  * @param data
  */
-export default async function Scatter(
-  container: HTMLElement,
-  data: Data
-): Promise<number> {
-  const startTime = performance.now();
+export default function Scatter(container: HTMLElement, data: Data) {
   const myChart = echarts.init(container, undefined, size);
   const option = {
     grid: {
@@ -35,11 +31,5 @@ export default async function Scatter(
 
   myChart.setOption(option);
 
-  const endTime = performance.now();
-
-  await sleep();
-
-  myChart.dispose();
-  // 返回最后的时间
-  return endTime - startTime;
+  return myChart;
 }
