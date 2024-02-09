@@ -2,6 +2,7 @@ import { Flex, Modal, Progress } from 'antd';
 import { useRef, useState } from 'react';
 
 import { ChartType, EnginesType } from '@/common/const';
+import { run } from '@/pref/runner';
 import { PerfData } from '@/pref/types';
 
 import Config from './config';
@@ -39,22 +40,26 @@ export const Content = () => {
     setOpen(false);
   };
 
+  const onFinish = (config: IConfig) => {
+    console.log(config);
+    setProgress({ percent: 0 } as IProgress);
+    openModal();
+    setTimeout(async () => {
+      const perfData = await run(config, setProgress, hideModal, isShouldRun);
+      setPerfData(perfData);
+    });
+  };
+
   return (
     <div className="mt-28">
-      <Config
-        openModal={openModal}
-        setPerfData={setPerfData}
-        setProgress={setProgress}
-        hideModal={hideModal}
-        isShouldRun={isShouldRun}
-      />
+      <Config onFinish={onFinish} />
       {!isShouldRun.current &&
         typeArr.map((type) => {
           return <Result data={perfData[type]} type={type} key={type} />;
         })}
 
       <Modal
-        title="performancing"
+        title="running..."
         centered
         open={open}
         onCancel={() => {

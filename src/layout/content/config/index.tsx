@@ -1,26 +1,15 @@
 import { Button, Checkbox, Flex, Form, InputNumber } from 'antd';
 
 import { CHART_TYPES, ENGINES } from '@/common/const';
-import { run } from '@/pref/runner';
-import { PerfData } from '@/pref/types';
 
-import { IConfig, IProgress } from '..';
+import { IConfig } from '..';
 
 interface IProps {
-  openModal: () => void;
-  hideModal: () => void;
-  isShouldRun: React.MutableRefObject<boolean>;
-  setPerfData: React.Dispatch<React.SetStateAction<PerfData>>;
-  setProgress: React.Dispatch<React.SetStateAction<IProgress>>;
+  // eslint-disable-next-line no-unused-vars
+  onFinish: (config: IConfig) => void;
 }
 
-export default function Config({
-  openModal,
-  setPerfData,
-  setProgress,
-  hideModal,
-  isShouldRun,
-}: IProps) {
+export default function Config({ onFinish }: IProps) {
   return (
     <Form
       className="mt-10"
@@ -33,19 +22,7 @@ export default function Config({
         end: 10000,
         step: 200,
       }}
-      onFinish={(values: IConfig) => {
-        setProgress({ percent: 0 } as IProgress);
-        openModal();
-        setTimeout(async () => {
-          const perfData = await run(
-            values,
-            setProgress,
-            hideModal,
-            isShouldRun
-          );
-          setPerfData(perfData);
-        });
-      }}
+      onFinish={onFinish}
     >
       <Form.Item name="engines" label="Chart Engines">
         <Checkbox.Group
