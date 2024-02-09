@@ -39,7 +39,7 @@ export async function run(
   const seq = getSeq(start, end, step);
 
   const mockData = mock(end);
-  //   const total = mockData.length;
+  const total = mockData.length;
   isShouldRun.current = true;
   const amount = seq.length * engines.length * types.length;
   let count = 0;
@@ -47,18 +47,20 @@ export async function run(
   for (const engine of engines) {
     for (const type of types) {
       for (const length of seq) {
+        //取消的判断
         if (isShouldRun.current) {
           const perfDatum = await runPerfCase(engine, type, length, mockData);
-          const percent = Math.round((count / amount) * 100);
-          count++;
-
-          setProgress({ percent, type, engine });
 
           if (!r[type]) {
             r[type] = [];
           }
 
           r[type].push(perfDatum);
+
+          const percent = Math.round((count / amount) * 100);
+          count++;
+
+          setProgress({ percent, type, engine, total, count: length });
         }
       }
     }

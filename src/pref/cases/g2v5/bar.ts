@@ -18,7 +18,7 @@ export default async function Bar(container: HTMLElement, data: Data) {
     .encode('x', X_FIELD) // 编码 x 通道
     .encode('y', Y_FIELD); // 编码 y 通道;
 
-  chart.render();
+  await chart.render();
 
   return chart;
 }

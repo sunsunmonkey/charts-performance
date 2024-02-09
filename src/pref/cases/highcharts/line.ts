@@ -7,7 +7,7 @@ import { size, X_FIELD, Y_FIELD } from '@/pref/utils';
  * @param container
  * @param data
  */
-export default async function Line(container: HTMLElement, data: Data) {
+export default function Line(container: HTMLElement, data: Data) {
   const option = {
     title: null,
     navigation: null,

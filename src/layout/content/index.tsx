@@ -1,4 +1,4 @@
-import { Modal, Progress } from 'antd';
+import { Flex, Modal, Progress } from 'antd';
 import { useRef, useState } from 'react';
 
 import { ChartType, EnginesType } from '@/common/const';
@@ -17,6 +17,8 @@ export interface IConfig {
 
 export interface IProgress {
   percent: number;
+  total: number;
+  count: number;
   engine: EnginesType;
   type: ChartType;
 }
@@ -69,7 +71,10 @@ export const Content = () => {
         width={900}
       >
         <Progress percent={progress.percent} />
-        <div className="pb-2">{`${progress.engine}/ ${progress.type}`}</div>
+        <Flex className="pb-2">
+          <div className="pr-5">{`${progress.engine}/ ${progress.type}`}</div>
+          <div>data: &nbsp;{`${progress.count}/ ${progress.total}`}</div>
+        </Flex>
 
         <div id="modalBody" className="flex justify-center"></div>
       </Modal>

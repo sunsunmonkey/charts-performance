@@ -7,7 +7,7 @@ import { size, X_FIELD, Y_FIELD } from '@/pref/utils';
  * @param container
  * @param data
  */
-export default async function Bar(container: HTMLElement, data: Data) {
+export default function Bar(container: HTMLElement, data: Data) {
   const myChart = echarts.init(container, undefined, size);
   const option = {
     grid: {
