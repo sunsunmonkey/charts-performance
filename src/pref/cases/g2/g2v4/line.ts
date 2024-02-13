@@ -8,7 +8,7 @@ import { size, X_FIELD, Y_FIELD } from '@/pref/utils';
  * @param data
  */
 
-export default async function Line(container: HTMLElement, data: Data) {
+export default function Line(container: HTMLElement, data: Data) {
   const chart = new Chart({
     container,
     ...size,

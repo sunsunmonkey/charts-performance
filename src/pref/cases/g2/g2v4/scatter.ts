@@ -8,7 +8,7 @@ import { size, Y_FIELD, Z_FIELD } from '@/pref/utils';
  * @param data
  */
 
-export default async function Scatter(container: HTMLElement, data: Data) {
+export default function Scatter(container: HTMLElement, data: Data) {
   const chart = new Chart({
     container,
     ...size,
