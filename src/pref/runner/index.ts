@@ -1,4 +1,3 @@
-import { ChartType, EnginesType } from '@/common/const';
 import { IConfig, IProgress } from '@/layout/content';
 
 import { getPerfCase } from '../cases';
@@ -6,12 +5,13 @@ import { Data, PerfData, PerfDatum } from '../types';
 import { createDIV, getSeq, mock, removeDIV } from '../utils';
 
 async function runPerfCase(
-  engine: EnginesType,
-  type: ChartType,
+  engine: string,
+  compareEngine: string,
+  type: string,
   length: number,
   mockData: Data
 ): Promise<PerfDatum> {
-  const perfCase = getPerfCase(engine, type);
+  const perfCase = getPerfCase(engine, compareEngine, type);
 
   // 创建容器
   const div = createDIV(document.getElementById('modalBody')!);
@@ -22,7 +22,7 @@ async function runPerfCase(
   removeDIV(div);
 
   return {
-    engine,
+    compareEngine,
     length,
     time,
     type,
@@ -30,7 +30,7 @@ async function runPerfCase(
 }
 
 export async function run(
-  { engines, types, start, end, step }: IConfig,
+  { engine, compareEngines, types, start, end, step }: IConfig,
   setProgress: React.Dispatch<React.SetStateAction<IProgress>>,
   hideModal: () => void,
   isShouldRun: React.MutableRefObject<boolean>
@@ -41,15 +41,21 @@ export async function run(
   const mockData = mock(end);
   const total = mockData.length;
   isShouldRun.current = true;
-  const amount = seq.length * engines.length * types.length;
+  const amount = seq.length * compareEngines.length * types.length;
   let count = 0;
 
-  for (const engine of engines) {
+  for (const compareEngine of compareEngines) {
     for (const type of types) {
       for (const length of seq) {
         //取消的判断
         if (isShouldRun.current) {
-          const perfDatum = await runPerfCase(engine, type, length, mockData);
+          const perfDatum = await runPerfCase(
+            engine,
+            compareEngine,
+            type,
+            length,
+            mockData
+          );
 
           if (!r[type]) {
             r[type] = [];
@@ -60,7 +66,7 @@ export async function run(
           const percent = Math.round((count / amount) * 100);
           count++;
 
-          setProgress({ percent, type, engine, total, count: length });
+          setProgress({ percent, type, compareEngine, total, count: length });
         }
       }
     }

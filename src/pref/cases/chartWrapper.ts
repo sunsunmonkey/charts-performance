@@ -13,7 +13,9 @@ type IRender = (container: HTMLElement, data: Data) => any;
 export default function chartWrapper(render: IRender) {
   return async (container: HTMLElement, data: Data) => {
     const startTime = performance.now();
+
     const chart = await render(container, data);
+
     const endTime = performance.now();
 
     await sleep();

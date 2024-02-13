@@ -1,12 +1,10 @@
-import { ChartType, EnginesType } from '@/common/const';
-
 export type PerfDatum = {
-  engine: EnginesType;
-  type: ChartType;
+  compareEngine: string;
+  type: string;
   length: number;
   time: number;
 };
-export type PerfData = Record<ChartType, PerfDatum[]>;
+export type PerfData = Record<string, PerfDatum[]>;
 
 export type Datum = Record<string, any>;
 export type Data = Datum[];

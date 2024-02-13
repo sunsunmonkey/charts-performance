@@ -2,12 +2,11 @@ import { Line } from '@antv/g2plot';
 import { Flex } from 'antd';
 import G2Plot from 'react-g2plot';
 
-import { ChartType } from '@/common/const';
 import { PerfDatum } from '@/pref/types';
 
 interface Iprops {
   data: PerfDatum[];
-  type: ChartType;
+  type: string;
 }
 
 export default function Result({ data, type }: Iprops) {
@@ -15,7 +14,7 @@ export default function Result({ data, type }: Iprops) {
     height: 300,
     xField: 'length',
     yField: 'time',
-    seriesField: 'engine',
+    seriesField: 'compareEngine',
     meta: {
       length: {
         type: 'cat',

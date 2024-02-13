@@ -72,8 +72,8 @@ export const size = {
 };
 
 export function pathToCase(path: string) {
-  const regex = /^\.\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)\.ts$/;
+  const regex =
+    /^\.\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)\.ts$/;
   const matches = regex.exec(path);
-
-  return `${matches[1]}-${matches[2]}`;
+  return `${matches[1]}-${matches[2]}-${matches[3]}`;
 }

@@ -1,0 +1,18 @@
+{
+  "G": {
+    "compareEngine": ["G"],
+    "chartType": ["Line", "Area", "Bar", "Scatter"]
+  },
+  "G2": {
+    "compareEngine": ["G2v5", "G2v4", "G2Plot", "ECharts", "Highcharts"],
+    "chartType": ["Line", "Area", "Bar", "Scatter"]
+  },
+  "G6": {
+    "compareEngine": ["G6"],
+    "chartType": ["Line", "Area", "Bar", "Scatter"]
+  },
+  "L7": {
+    "compareEngine": ["L7"],
+    "chartType": ["Line", "Area", "Bar", "Scatter"]
+  }
+}
