@@ -45,7 +45,7 @@ export async function run(
   let count = 0;
 
   //激活用例
-  activateCase(engine);
+  await activateCase(engine);
 
   for (const compareEngine of compareEngines) {
     for (const type of types) {

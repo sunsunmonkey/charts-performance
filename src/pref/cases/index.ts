@@ -40,13 +40,17 @@ export function getPerfCase(
 }
 
 //激活用例，从lazy状态下激活
-export function activateCase(engine: string) {
-  allCaseKeys.map(async (item: string) => {
-    //如果含有该字段并且没有被唤醒过
-    if (item.includes(engine.toLowerCase()) && !CASES.get(engine)) {
-      const render = await (CASES.get(item) as ImportCaseType)();
-      CASES.set(item, render);
-    }
-  });
+export async function activateCase(engine: string) {
+  await Promise.all(
+    allCaseKeys.map(async (item: string) => {
+      //如果含有该字段并且没有被唤醒过
+      if (item.includes(engine.toLowerCase()) && !CASES.get(engine)) {
+        const render = await (CASES.get(item) as ImportCaseType)();
+        CASES.set(item, render);
+      }
+    })
+  );
+
+  //设置字段已经被唤醒
   CASES.set(engine, true);
 }
