@@ -44,7 +44,7 @@ export async function activateCase(engine: string) {
   await Promise.all(
     allCaseKeys.map(async (item: string) => {
       //如果含有该字段并且没有被唤醒过
-      if (item.includes(engine.toLowerCase()) && !CASES.get(engine)) {
+      if (item.includes(engine.toLowerCase() + '-') && !CASES.get(engine)) {
         const render = await (CASES.get(item) as ImportCaseType)();
         CASES.set(item, render);
       }
