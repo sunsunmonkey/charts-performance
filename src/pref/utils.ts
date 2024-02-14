@@ -1,4 +1,5 @@
 import { M } from 'miz';
+
 /**
  * 获得测试的数据长度序列（按需配置）
  * @param start
@@ -71,7 +72,12 @@ export const size = {
   width: 800,
 };
 
-export function pathToCase(path: string) {
+/**
+ *
+ * @param path 文件路径
+ * @returns 测试用例id
+ */
+export function pathToCaseId(path: string) {
   const regex =
     /^\.\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)\.ts$/;
   const matches = regex.exec(path);

@@ -8,11 +8,11 @@
     "chartType": ["Line", "Area", "Bar", "Scatter"]
   },
   "G6": {
-    "compareEngine": ["G6"],
+    "compareEngine": ["G6v4"],
     "chartType": ["Line", "Area", "Bar", "Scatter"]
   },
   "L7": {
-    "compareEngine": ["L7"],
+    "compareEngine": ["L7v2"],
     "chartType": ["Line", "Area", "Bar", "Scatter"]
   }
 }

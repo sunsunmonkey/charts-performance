@@ -1,6 +1,6 @@
 import { IConfig, IProgress } from '@/layout/content';
 
-import { getPerfCase } from '../cases';
+import { activateCase, getPerfCase } from '../cases';
 import { Data, PerfData, PerfDatum } from '../types';
 import { createDIV, getSeq, mock, removeDIV } from '../utils';
 
@@ -44,6 +44,9 @@ export async function run(
   const amount = seq.length * compareEngines.length * types.length;
   let count = 0;
 
+  //激活用例
+  activateCase(engine);
+
   for (const compareEngine of compareEngines) {
     for (const type of types) {
       for (const length of seq) {
@@ -63,6 +66,7 @@ export async function run(
 
           r[type].push(perfDatum);
 
+          //设置进度条进度状况
           const percent = Math.round((count / amount) * 100);
           count++;
 
@@ -71,6 +75,7 @@ export async function run(
       }
     }
   }
+
   isShouldRun.current = false;
   hideModal();
   return r;
