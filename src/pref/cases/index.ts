@@ -1,20 +1,23 @@
-import { PerfCase } from '../types';
-import { pathToCase } from '../utils';
-import chartWrapper from './chartWrapper';
+import { ImportCaseType, PerfCase } from '../types';
+import { pathToCaseId } from '../utils';
+import { timerWrapper } from './chartWrapper';
 
 // 所有的 case 管理
-const CASES = new Map<string, PerfCase>();
+const CASES = new Map<string, ImportCaseType | PerfCase | boolean>();
 
 // 动态读取导入所有case
+// 默认为懒加载
 const allCase = import.meta.glob('../cases/*/*/*.ts', {
   import: 'default',
-  eager: true,
 });
 
-const allCaseKeys = Object.keys(allCase);
+let allCaseKeys = Object.keys(allCase);
 
-allCaseKeys.map((item) => {
-  CASES.set(pathToCase(item), allCase[item] as PerfCase);
+allCaseKeys = allCaseKeys.map((item) => {
+  const caseId = pathToCaseId(item);
+  CASES.set(caseId, allCase[item] as ImportCaseType);
+
+  return caseId;
 });
 
 /**
@@ -29,9 +32,25 @@ export function getPerfCase(
   compareEngine: string,
   type: string
 ): PerfCase {
-  return chartWrapper(
+  return timerWrapper(
     CASES.get(
       `${engine.toLowerCase()}-${compareEngine.toLowerCase()}-${type.toLowerCase()}`
-    )
+    ) as PerfCase
   );
+}
+
+//激活用例，从lazy状态下激活
+export async function activateCase(engine: string) {
+  await Promise.all(
+    allCaseKeys.map(async (item: string) => {
+      //如果含有该字段并且没有被唤醒过
+      if (item.includes(engine.toLowerCase()) && !CASES.get(engine)) {
+        const render = await (CASES.get(item) as ImportCaseType)();
+        CASES.set(item, render);
+      }
+    })
+  );
+
+  //设置字段已经被唤醒
+  CASES.set(engine, true);
 }

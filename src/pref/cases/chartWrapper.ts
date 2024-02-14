@@ -10,7 +10,7 @@ import { sleep } from '../utils';
 // eslint-disable-next-line no-unused-vars
 type IRender = (container: HTMLElement, data: Data) => any;
 
-export default function chartWrapper(render: IRender) {
+export function timerWrapper(render: IRender) {
   return async (container: HTMLElement, data: Data) => {
     const startTime = performance.now();
 
