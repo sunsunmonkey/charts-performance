@@ -62,6 +62,7 @@ export const Content = () => {
             block
             onChange={(value) => {
               setEngine(value);
+              setPerfData({} as PerfData);
             }}
           ></Segmented>
         </Col>
