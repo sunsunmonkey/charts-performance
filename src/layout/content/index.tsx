@@ -93,8 +93,14 @@ export const Content = () => {
       >
         <Progress percent={progress.percent} />
         <Flex className="pb-2">
-          <div className="pr-5">{`${progress.compareEngine}/ ${progress.type}`}</div>
-          <div>data: &nbsp;{`${progress.count}/ ${progress.total}`}</div>
+          {progress.count ? (
+            <>
+              <div className="pr-5">{`${progress.compareEngine}/ ${progress.type}`}</div>
+              <div>data: &nbsp;{`${progress.count}/ ${progress.total}`}</div>
+            </>
+          ) : (
+            <div>loading...</div>
+          )}
         </Flex>
 
         <div id="modalBody" className="flex justify-center"></div>
